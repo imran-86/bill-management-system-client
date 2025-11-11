@@ -4,6 +4,7 @@ import Login from "../Components/Auth/Login";
 import Register from "../Components/Auth/Register";
 import MyPayBills from "../Pages/MyPayBills";
 import Bills from "../Pages/Bills";
+import Home from "../Pages/Home";
 
 
 
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootLayout></RootLayout>,
     children : [
+        {
+          index:true,
+          Component: Home
+        },
         {
            path:'/auth/login',
            Component:Login
