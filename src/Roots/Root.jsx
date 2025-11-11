@@ -3,6 +3,7 @@ import RootLayout from "../Components/Commons/RootLayout";
 import Login from "../Components/Auth/Login";
 import Register from "../Components/Auth/Register";
 import MyPayBills from "../Pages/MyPayBills";
+import Bills from "../Pages/Bills";
 
 
 
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
         {
             path:'/my-pay-bills',
             Component: MyPayBills
+        },
+        {
+          path:'/bills',
+          Component: Bills
         }
     ]
   },
