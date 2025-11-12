@@ -7,6 +7,7 @@ const MyPayBills = () => {
     const {user} = use(AuthContext)
     const [myBills,setMyBills] = useState([]);
         const [loading,setLoading] = useState(true);
+        console.log(user);
         
         
         
@@ -29,6 +30,13 @@ const MyPayBills = () => {
             return <LoadingSpinner></LoadingSpinner>
         }
         // console.log(myBills);
+      let totalAmount = 0;
+         myBills.forEach(bill => {
+          totalAmount += parseInt(bill.amount);
+         });
+         console.log(totalAmount);
+         
+        const totalBills = myBills.length;
         
     return (
         
@@ -39,7 +47,47 @@ const MyPayBills = () => {
                     <h1 className="text-3xl font-bold text-gray-900 mb-2">My Paid Bills</h1>
                     <p className="text-gray-600">Manage and view all your bill payments</p>
                 </div>
+                 {/* status section  */}
+                           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-medium text-gray-600">Total Bills Paid</p>
+                                <p className="text-3xl font-bold text-gray-900 mt-1">{totalBills}</p>
+                            </div>
+                            <div className="p-3 bg-blue-100 rounded-lg">
+                                <FileText className="w-6 h-6 text-blue-600" />
+                            </div>
+                        </div>
+                    </div>
 
+                    <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                <p className="text-sm font-medium text-gray-600">Total Amount Paid</p>
+                                <p className="text-3xl font-bold text-gray-900 mt-1">
+                                    ৳{totalAmount}
+                                    </p>
+                            </div>
+                            <div className="p-3 bg-green-100 rounded-lg">
+                                <DollarSign className="w-6 h-6 text-green-600" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+                        <div className="flex items-center justify-between">
+                            <div>
+                                
+                                <p className="text-lg font-semibold text-gray-900 mt-1 truncate">{user?.displayName}</p>
+                                <p className="text-sm text-gray-500 truncate">{user?.email}</p>
+                            </div>
+                            <div className="">
+                                <img className='w-14 h-14 rounded-full' src={`${user?.photoURL}`} alt="" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
               
                 
 
@@ -116,11 +164,7 @@ const MyPayBills = () => {
                                                     <DollarSign size={16} className="text-green-500" />
                                                     <span className="font-semibold text-green-600">৳{bill.amount?.toLocaleString()}</span>
                                                 </div>
-                                                {bill.billTitle && (
-                                                    <p className="text-sm text-gray-500 mt-1 truncate max-w-xs">
-                                                        {bill.billTitle}
-                                                    </p>
-                                                )}
+                                                
                                             </td>
 
                                             {/* Contact Info */}
@@ -176,25 +220,7 @@ const MyPayBills = () => {
                     )}
                 </div>
 
-                {/* Footer Summary */}
-                {myBills.length > 0 && (
-                    <div className="mt-6 bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-                        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-                            <div>
-                                <h3 className="font-semibold text-gray-800">Summary</h3>
-                                <p className="text-gray-600 text-sm">
-                                    Total {myBills.length} bill{myBills.length !== 1 ? 's' : ''} paid
-                                </p>
-                            </div>
-                            <div className="text-right">
-                                <p className="text-2xl font-bold text-green-600">234567890
-                                    {/* ৳{totalAmount.toLocaleString()} */}
-                                    </p>
-                                <p className="text-sm text-gray-600">Total Amount Paid</p>
-                            </div>
-                        </div>
-                    </div>
-                )}
+                
             </div>
         </div>
     );
