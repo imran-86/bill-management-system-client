@@ -1,15 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { ArrowLeft, Calendar, MapPin, DollarSign, FileText, Clock, User } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router';
 import LoadingSpinner from './LoadingSpinner';
+import { AuthContext } from '../Context/AuthContext';
 
 const BillDetails = () => {
+    const {user} = use(AuthContext);
     const { id } = useParams();
     const navigate = useNavigate();
     const [bill, setBill] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
+    
+     const isCurrentMonthBill = (billDate) => {
+        if (!billDate) return false;
+        
+        const billDateObj = new Date(billDate);
+        const currentDate = new Date();
+        if(billDateObj.getMonth()===currentDate.getMonth() && billDateObj.getFullYear()===currentDate.getFullYear()){
+            return true;
+        }
+        else{
+            return false;
+        }
+        
+    };
     useEffect(() => {
         const fetchBillDetails = async () => {
             try {
@@ -214,6 +229,9 @@ const BillDetails = () => {
                                             <span>Last updated: {new Date().toLocaleDateString()}</span>
                                         </div>
                                     </div>
+                                    {
+                                        isCurrentMonthBill(bill.date)?"Current Month Bill":"Not Current"
+                                    }
                                 </div>
                             </div>
                         </div>
