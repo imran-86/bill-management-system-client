@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { use, useEffect, useRef, useState } from 'react';
 import { ArrowLeft, Calendar, MapPin, DollarSign, FileText, Clock, User } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router';
 import LoadingSpinner from './LoadingSpinner';
@@ -6,12 +6,13 @@ import { AuthContext } from '../Context/AuthContext';
 
 const BillDetails = () => {
     const {user} = use(AuthContext);
+    const paymentModalRef = useRef(null)
     const { id } = useParams();
     const navigate = useNavigate();
     const [bill, setBill] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    
+   
      const isCurrentMonthBill = (billDate) => {
         if (!billDate) return false;
         
@@ -25,6 +26,12 @@ const BillDetails = () => {
         }
         
     };
+    const handlePaymentModal = ()=>{
+        paymentModalRef.current.showModal();
+    }
+    const handlePaymentSubmit = (e)=>{
+        e.preventDefault();
+    }
     useEffect(() => {
         const fetchBillDetails = async () => {
             try {
@@ -215,7 +222,9 @@ const BillDetails = () => {
                                     </div>
 
                                     <div className="space-y-3">
-                                        <button className="w-full bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3 rounded-lg transition-colors duration-200">
+                                        <button
+                                        onClick={handlePaymentModal}
+                                        className="w-full bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3 rounded-lg transition-colors duration-200">
                                             Pay Now
                                         </button>
                                         <button className="w-full bg-transparent border-2 border-white text-white hover:bg-white/10 font-semibold py-3 rounded-lg transition-colors duration-200">
@@ -229,11 +238,49 @@ const BillDetails = () => {
                                             <span>Last updated: {new Date().toLocaleDateString()}</span>
                                         </div>
                                     </div>
-                                    {
-                                        isCurrentMonthBill(bill.date)?"Current Month Bill":"Not Current"
-                                    }
+                                   
+                                    
+                                        {/* Open the modal using document.getElementById('ID').showModal() method */}
+              {/* <button className="btn" onClick={()=>document.getElementById('my_modal_5').showModal()}>open modal</button> */}
+            <dialog ref={paymentModalRef} className="modal modal-bottom sm:modal-middle">
+              <div className="modal-box">
+                 <h3 className="font-bold text-lg text-black">Payment</h3>
+              <p className="py-4">Press ESC key or click the button below to close</p>
+               <form 
+               onSubmit={handlePaymentSubmit}
+               >
+                 <fieldset className="fieldset">
+          <label className="label text-black">Email</label>
+          <input type="email" className="input text-black" placeholder="Email" />
+          <label className="label text-black">Username</label>
+          <input type="text" className="input text-black" placeholder="Email" />
+          <label className="label text-black">Amount</label>
+          <input type="text" className="input text-black" placeholder="Email" />
+        <label className="label text-black">Address</label>
+          <input type="text" className="input text-black" placeholder="Email" />
+        
+        <label className="label text-black">Phone</label>
+          <input type="text" className="input text-black" placeholder="Email" />
+        <label className="label text-black">Date</label>
+          <input type="text" className="input text-black" placeholder="Email" />
+        
+        
+        </fieldset>
+
+               </form>
+               
+               
+               <div className="modal-action">
+                <form method="dialog">
+               {/* if there is a button in form, it will close the modal */}
+                   <button className="btn">Close</button>
+                </form>
+               </div>
+                    </div>
+                     </dialog>
+                                    </div>
                                 </div>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
