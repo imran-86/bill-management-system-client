@@ -251,20 +251,22 @@ const BillDetails = () => {
                >
                  <fieldset className="fieldset">
           <label className="label text-black">Email</label>
-          <input type="email" className="input text-black" placeholder="Email" />
+          <input name='email' type="email" className="input text-black" readOnly defaultValue={user?.email} />
           <label className="label text-black">Username</label>
-          <input type="text" className="input text-black" placeholder="Email" />
+          <input name='name' type="text" className="input text-black" defaultValue={user?.displayName}
+          readOnly
+          />
           <label className="label text-black">Amount</label>
-          <input type="text" className="input text-black" placeholder="Email" />
+          <input name='amount' type="text" className="input text-black" defaultValue={bill.amount} readOnly/>
         <label className="label text-black">Address</label>
-          <input type="text" className="input text-black" placeholder="Email" />
+          <input name='address' type="text" className="input text-black" placeholder="Your Address" />
         
         <label className="label text-black">Phone</label>
-          <input type="text" className="input text-black" placeholder="Email" />
+          <input name='phone' type="text" className="input text-black" placeholder="Your Phone Number" />
         <label className="label text-black">Date</label>
-          <input type="text" className="input text-black" placeholder="Email" />
+          <input name='date' type="text" className="input text-black" defaultValue={new Date().toLocaleDateString()} />
         
-        
+        <button className="btn btn-neutral mt-4">Pay</button>
         </fieldset>
 
                </form>
