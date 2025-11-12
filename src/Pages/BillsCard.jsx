@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const BillsCard = ({ bill }) => {
     const { 
@@ -6,7 +7,9 @@ const BillsCard = ({ bill }) => {
         title, 
         category, 
         location, 
-        amount 
+        amount,
+        _id
+
     } = bill;
 
     return (
@@ -51,6 +54,9 @@ const BillsCard = ({ bill }) => {
                 </div>
 
                 {/* See Details Button */}
+                <Link
+                to={`/bill-details/${_id}`}
+                >
                 <button
     
                 className="cursor-pointer w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-all duration-200 transform hover:shadow-lg active:scale-95 flex items-center justify-center group">
@@ -59,6 +65,8 @@ const BillsCard = ({ bill }) => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                 </button>
+                </Link>
+                
             </div>
         </div>
     );

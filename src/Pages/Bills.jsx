@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import BillsCard from './BillsCard';
+import LoadingSpinner from './LoadingSpinner';
 
 const Bills = () => {
 
@@ -15,7 +16,7 @@ const Bills = () => {
         })
     },[])
     if(loading){
-        return <p>Loading . . .</p>
+        return <LoadingSpinner></LoadingSpinner>
     }
     return (
         <div className='my-30'>

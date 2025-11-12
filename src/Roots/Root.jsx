@@ -5,6 +5,8 @@ import Register from "../Components/Auth/Register";
 import MyPayBills from "../Pages/MyPayBills";
 import Bills from "../Pages/Bills";
 import Home from "../Pages/Home";
+import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
+import BillDetails from "../Pages/BillDetails";
 
 
 
@@ -32,7 +34,11 @@ const router = createBrowserRouter([
         {
           path:'/bills',
           Component: Bills
-        }
+        },
+        {
+          path:"/bill-details/:id",
+          element: <PrivateRoute><BillDetails></BillDetails></PrivateRoute>
+        },
     ]
   },
 ]);
