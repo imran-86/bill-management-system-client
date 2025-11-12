@@ -1,6 +1,6 @@
 import React, { use, useEffect, useRef, useState } from 'react';
 import { ArrowLeft, Calendar, MapPin, DollarSign, FileText, Clock, User } from 'lucide-react';
-import { useNavigate, useParams } from 'react-router';
+import { data, useNavigate, useParams } from 'react-router';
 import LoadingSpinner from './LoadingSpinner';
 import { AuthContext } from '../Context/AuthContext';
 
@@ -8,6 +8,7 @@ const BillDetails = () => {
     const {user} = use(AuthContext);
     const paymentModalRef = useRef(null)
     const { id } = useParams();
+    
     const navigate = useNavigate();
     const [bill, setBill] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -31,6 +32,38 @@ const BillDetails = () => {
     }
     const handlePaymentSubmit = (e)=>{
         e.preventDefault();
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const phone = e.target.phone.value;
+        const address = e.target.address.value;
+        const amount = e.target.amount.value;
+        const date = e.target.date.value;
+        const billId = e.target.billId.value;
+        console.log(name,email,address,phone,amount,billId,date);
+        const payment  = {
+           billsId : billId,
+           username : name,
+           Phone : phone,
+           Address : address,
+           email : email,
+           amount : amount,
+           date : date
+        }
+
+        fetch('http://localhost:3000/payments-history',{
+           method: 'POST',
+           headers: {
+             'content-type' : 'application/json'
+           },
+           body: JSON.stringify(payment)
+        })
+        .then(res =>res.json())
+        .then(data =>{
+        console.log('After placing payment ',data);
+        
+        })
+
+
     }
     useEffect(() => {
         const fetchBillDetails = async () => {
@@ -254,6 +287,10 @@ const BillDetails = () => {
           <input name='email' type="email" className="input text-black" readOnly defaultValue={user?.email} />
           <label className="label text-black">Username</label>
           <input name='name' type="text" className="input text-black" defaultValue={user?.displayName}
+          readOnly
+          />
+           <label className="label text-black">BillId</label>
+          <input name='billId' type="text" className="input text-black" defaultValue={id}
           readOnly
           />
           <label className="label text-black">Amount</label>
