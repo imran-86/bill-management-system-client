@@ -1,6 +1,6 @@
 import React, { use, useEffect, useRef, useState } from 'react';
 import { ArrowLeft, Calendar, MapPin, DollarSign, FileText, Clock, User } from 'lucide-react';
-import { data, useNavigate, useParams } from 'react-router';
+import {  useNavigate, useParams } from 'react-router';
 import LoadingSpinner from './LoadingSpinner';
 import { AuthContext } from '../Context/AuthContext';
 
@@ -255,11 +255,22 @@ const BillDetails = () => {
                                     </div>
 
                                     <div className="space-y-3">
-                                        <button
-                                        onClick={handlePaymentModal}
-                                        className="w-full bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3 rounded-lg transition-colors duration-200">
-                                            Pay Now
-                                        </button>
+                                        {
+    isCurrentMonthBill(bill.date) ? 
+        <button
+            onClick={handlePaymentModal}
+            className="w-full bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3 rounded-lg transition-colors duration-200"
+        >
+            Pay Now
+        </button> : 
+        <button 
+            disabled
+            className="w-full bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3 rounded-lg transition-colors duration-200 opacity-50 cursor-not-allowed"
+        >
+            Pay Now
+        </button>
+}
+                                        
                                         <button className="w-full bg-transparent border-2 border-white text-white hover:bg-white/10 font-semibold py-3 rounded-lg transition-colors duration-200">
                                             Download Invoice
                                         </button>
