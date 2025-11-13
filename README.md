@@ -1,16 +1,16 @@
-# React + Vite
+Live Site: https://silver-taffy-dd46e1.netlify.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🚀 Key Features
+All-in-One Bill Management - Track electricity, gas, water, and internet bills in single platform
 
-## React Compiler
+Secure Online Payments - Bank-level security for all transactions with real-time processing
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Smart Notifications - Get timely reminders for upcoming due dates and payment confirmations
 
-## Expanding the ESLint configuration
+Downloadable Reports - Generate and export PDF reports of your payment history
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+User-Friendly Dashboard - Intuitive interface with category-wise bill organization and analytics
+
+Simplify your utility bill management with BillManager - Fast, secure, and reliable.
