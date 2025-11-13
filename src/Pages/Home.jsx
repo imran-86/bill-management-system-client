@@ -26,7 +26,7 @@ const Home = () => {
              <Banner></Banner>
              <CategoryCard></CategoryCard>
 
-            <h2 className='text-5xl font-bold text-center my-20'>Recent Bills</h2>
+            <h2 className='text-5xl font-semibold text-center my-20'>Recent Bills</h2>
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
          {latestBills.map(bill => <BillsCard key={bill._id} bill={bill}/>)}
           </div>

@@ -35,7 +35,7 @@ const Bills = () => {
     return (
         <div className='my-30 max-w-7xl mx-auto'>
             <div className='flex justify-between'>
-                 <h2 className='text-5xl font-bold text-center mb-20'>All Utility Bills</h2>
+                 <h2 className='text-5xl font-semibold text-center mb-20'>All Utility Bills</h2>
                  <div className="mb-12">
              <div className="flex justify-center">
         <select

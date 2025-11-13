@@ -318,25 +318,25 @@ const BillDetails = () => {
                onSubmit={handlePaymentSubmit}
                >
                  <fieldset className="fieldset">
-          <label className="label text-black">Email</label>
-          <input name='email' type="email" className="input text-black" readOnly defaultValue={user?.email} />
-          <label className="label text-black">Username</label>
-          <input name='name' type="text" className="input text-black" defaultValue={user?.displayName}
+           <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+          <input name='email' type="email" className="input text-gray-700" readOnly defaultValue={user?.email} />
+           <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
+          <input name='name' type="text" className="input text-gray-700" defaultValue={user?.displayName}
           readOnly
           />
-           <label className="label text-black">BillId</label>
-          <input name='billId' type="text" className="input text-black" defaultValue={id}
+           <label className="block text-sm font-medium text-gray-700 mb-1">BillId</label>
+          <input name='billId' type="text" className="input text-gray-700" defaultValue={id}
           readOnly
           />
-          <label className="label text-black">Amount</label>
-          <input name='amount' type="text" className="input text-black" defaultValue={bill.amount} readOnly/>
-        <label className="label text-black">Address</label>
-          <input name='address' type="text" className="input text-black" placeholder="Your Address" />
+          <label className="block text-sm font-medium text-gray-700 mb-1">Amount</label>
+          <input name='amount' type="text" className="input text-gray-700" defaultValue={bill.amount} readOnly/>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
+          <input name='address' type="text" className="input text-gray-700" placeholder="Your Address" />
         
-        <label className="label text-black">Phone</label>
-          <input name='phone' type="text" className="input text-black" placeholder="Your Phone Number" />
-        <label className="label text-black">Date</label>
-          <input name='date' type="text" className="input text-black" defaultValue={new Date().toLocaleDateString()} />
+        <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+          <input name='phone' type="text" className="input text-gray-700" placeholder="Your Phone Number" />
+        <label className="block text-sm font-medium text-gray-700 mb-1">Date</label>
+          <input name='date' type="text" className="input text-gray-700" defaultValue={new Date().toLocaleDateString()} />
         
         <button className="btn btn-neutral mt-4">Pay</button>
         </fieldset>

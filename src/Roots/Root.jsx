@@ -8,6 +8,7 @@ import Home from "../Pages/Home";
 import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
 import BillDetails from "../Pages/BillDetails";
 import AboutUs from "../Pages/AboutUs";
+import ErrorPages from "../Pages/ErrorPages";
 
 
 
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout></RootLayout>,
+     errorElement:<ErrorPages></ErrorPages>,
     children : [
         {
           index:true,

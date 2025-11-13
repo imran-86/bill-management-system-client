@@ -4,8 +4,10 @@ import { AuthContext } from '../Context/AuthContext';
 import { Calendar, DollarSign, Download, Edit, FileText, Mail, MapPin, Phone, Trash2, User } from 'lucide-react';
 import Swal from 'sweetalert2';
 import { jsPDF } from 'jspdf';
+import { useNavigate } from 'react-router';
 const MyPayBills = () => {
     const {user} = use(AuthContext)
+  
     const updateModalRef = useRef(null)
     const [myBills,setMyBills] = useState([]);
     const [selectedBill,setSelectedBill] = useState(null)
@@ -63,6 +65,7 @@ const MyPayBills = () => {
     })
     .then(res => res.json())
     .then(data=> {
+        e.target.reset();
          setMyBills(prevBills => 
         prevBills.map(bill => 
             bill._id === selectedBill._id 
@@ -109,6 +112,7 @@ const MyPayBills = () => {
     prevBills.filter(bills => bills._id !== bill._id)
 );
         // setSelectedBill(null);
+        // e.target.reset()
       console.log(data)
     })
     .catch(err => {
@@ -384,41 +388,42 @@ bills.forEach((bill, index) => {
             <div>
                 <dialog ref={updateModalRef} className="modal modal-bottom sm:modal-middle">
               <div className="modal-box">
-                 <h3 className="font-bold text-lg text-black">Payment</h3>
+                 <h3 className="font-bold text-lg text-blue-400">Update Information</h3>
               <p className="py-4">Press ESC key or click the button below to close</p>
                <form 
+               method="dialog"
                onSubmit={handleUpdateSubmit}
                >
                  <fieldset className="fieldset">
           
-          <label className="label text-black">Amount</label>
+          <label className="block text-sm font-medium text-blue-400 mb-1">Amount</label>
           <input name='amount' type="text" className="input text-black" defaultValue={selectedBill?.amount} />
-        <label className="label text-black">Address</label>
+         <label className="block text-sm font-medium text-blue-400 mb-1">Address</label>
           <input name='address' type="text" className="input text-black" placeholder="Your Address"
           defaultValue={selectedBill?.Address}
           />
         
-        <label className="label text-black">Phone</label>
+         <label className="block text-sm font-medium text-blue-400 mb-1">Phone</label>
           <input name='phone' type="text" className="input text-black" placeholder="Your Phone Number" 
           defaultValue={selectedBill?.Phone}
           />
-        <label className="label text-black">Date</label>
+        <label className="block text-sm font-medium text-blue-400 mb-1">Date</label>
           <input name='date' type="text" className="input text-black" 
           defaultValue={new Date().toLocaleDateString()}
            />
-        
-        <button className="btn btn-neutral mt-4">Pay</button>
+           
+        <button className="btn btn-neutral mt-4">Update</button>
         </fieldset>
 
                </form>
                
                
-               <div className="modal-action">
+                <div className="modal-action">
                 <form method="dialog">
-               {/* if there is a button in form, it will close the modal */}
-                   <button className="btn">Close</button>
+              
+                   <button className="btn">Please Close</button>
                 </form>
-               </div>
+               </div> 
                     </div>
                      </dialog> 
             </div>

@@ -1,5 +1,5 @@
 import React, { use, useEffect, useState } from 'react';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 
 const Navbar = () => {
@@ -7,7 +7,7 @@ const Navbar = () => {
     const {user,signOutUser} = use(AuthContext)
      const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-
+    const navigate = useNavigate();
   useEffect(() => {
     const html = document.querySelector("html");
     html.setAttribute("data-theme", theme);
@@ -17,7 +17,7 @@ const Navbar = () => {
   const handleSignOut = () =>{
            signOutUser()
            .then(()=>{
-             
+             navigate('/')
            })
           .catch(err =>{
             console.log(err);
@@ -44,7 +44,7 @@ const Navbar = () => {
 
 
     return (
-       <div className="navbar bg-base-100 shadow-sm lg:px-10">
+       <div className="navbar bg-base-100 shadow-sm lg:px-10 sticky top-0 z-10">
   <div className="flex-1">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -52,8 +52,8 @@ const Navbar = () => {
       </div>
       <ul
         tabIndex="-1"
-        className="menu menu-sm dropdown-content  bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow flex flex-col flex-1 gap-3">
-       {links}
+        className="menu menu-sm dropdown-content lg:hidden  bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow flex flex-col flex-1 gap-3">
+        {user ? links2 : links}
       </ul>
 </div>
 <div className="flex items-center gap-3 mb-4">
