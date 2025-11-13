@@ -1,10 +1,18 @@
-import React, { use } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router';
 import { AuthContext } from '../../Context/AuthContext';
 
 const Navbar = () => {
   
     const {user,signOutUser} = use(AuthContext)
+     const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
   // console.log(user);
   const handleSignOut = () =>{
            signOutUser()
@@ -29,6 +37,12 @@ const Navbar = () => {
     <NavLink className='mr-4' to="/my-pay-bills">MyPayBills</NavLink>
    
     </>
+
+     const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
+
+
     return (
        <div className="navbar bg-base-100 shadow-sm lg:px-10">
   <div className="flex-1">
@@ -47,8 +61,15 @@ const Navbar = () => {
   <div className="flex gap-2">
     <div className='flex gap-5 items-center'>
         {user ? links2 : links}
+         <input
+           onChange={(e) => handleTheme(e.target.checked)}
+           type="checkbox"
+           defaultChecked={localStorage.getItem('theme') === "dark"}
+           className="toggle"/>
+
     </div>
      
+    
      {user && (
   <div className="dropdown dropdown-end">
     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">

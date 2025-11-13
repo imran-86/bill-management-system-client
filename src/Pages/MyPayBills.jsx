@@ -118,18 +118,40 @@ const MyPayBills = () => {
       }
     });
   };
-    // console.log(selectedBill);
+    
 const downloadPDFReport = (bills, currentUser) => {
-    // Create new PDF instance
+    
     const doc = new jsPDF();
     console.log(currentUser , bills);
     
-    // Add title
+
+     doc.setFontSize(20);
+    doc.setTextColor(40, 40, 40);
+    doc.text('Bill Payment Report', 105, 20, { align: 'center' });
+    
+   
+    doc.setFontSize(12);
+    doc.setTextColor(100, 100, 100);
+    doc.text(`Generated for: ${currentUser.displayName}`, 20, 35);
+    doc.text(`Email: ${currentUser.email}`, 20, 42);
+    doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 20, 49);
+    
+    
+   let totalAmount2 = 0;
+         myBills.forEach(bill => {
+          totalAmount2 += parseInt(bill.amount);
+         });
+    doc.text(`Total Bills: ${bills.length}`, 20, 60);
+    doc.text(`Total Amount: ৳${totalAmount2.toLocaleString()}`, 20, 67);
+
+
+
+    
     doc.setFontSize(20);
     doc.setTextColor(40, 40, 40);
     doc.text('Bill Payment Report', 105, 20, { align: 'center' });
     
-   // Add table headers
+  
 doc.setFontSize(10);
 doc.setTextColor(255, 255, 255);
 doc.setFillColor(59, 130, 246); 
@@ -141,35 +163,35 @@ doc.text('Amount', 120, 85);
 doc.text('Date', 145, 85);
 doc.text('Status', 165, 85);
 
-// Add bill data
+
 doc.setTextColor(0, 0, 0);
 let yPosition = 95;
 
 bills.forEach((bill, index) => {
-    // Alternate row colors
+  
     if (index % 2 === 0) {
         doc.setFillColor(245, 245, 245);
         doc.rect(20, yPosition - 5, 170, 8, 'F');
     }
 
-    // Fixed: Different X positions for each column
-    doc.text(bill.billsId?.substring(18) || 'N/A', 25, yPosition);
-    doc.text(bill.Phone || 'N/A', 50, yPosition);        // Changed from 90 to 50
-    doc.text(bill.Address?.substring(0, 15) + (bill.Address?.length > 15 ? '...' : '') || 'N/A', 90, yPosition); // Changed from 90 to 75
-    doc.text(`৳${bill.amount}`, 120, yPosition);
+   
+    doc.text(bill.billsId.substring(18) || 'N/A', 25, yPosition);
+    doc.text(bill.Phone || 'N/A', 50, yPosition);       
+    doc.text(bill.Address?.substring(0, 15) + (bill.Address?.length > 15 ? '...' : '') || 'N/A', 90, yPosition); 
+    doc.text(`${bill.amount}`, 120, yPosition);
     doc.text(new Date(bill.date).toLocaleDateString(), 145, yPosition);
     doc.text(bill.status || 'Paid', 165, yPosition);
     
     yPosition += 8;
     
-    // Add new page if needed
+    
     if (yPosition > 270) {
         doc.addPage();
         yPosition = 20;
     }
 });
     
-    // Save the PDF
+   
     doc.save(`bill-report-${currentUser.username}-${new Date().toISOString().split('T')[0]}.pdf`);
 }
     
