@@ -22,7 +22,7 @@ const MyPayBills = () => {
         setLoading(false);
         return;
     }
-            fetch(`http://localhost:3000/myPayBills?email=${user.email}`)
+            fetch(`https://bill-management-system-server-blond.vercel.app/myPayBills?email=${user.email}`)
             .then(res=>res.json())
             .then((data)=>{
                 console.log(data);
@@ -56,7 +56,7 @@ const MyPayBills = () => {
      
        }
     //    console.log(updatedData);
-        fetch(`http://localhost:3000/bills/${selectedBill?._id}`, {
+        fetch(`https://bill-management-system-server-blond.vercel.app/bills/${selectedBill?._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -99,7 +99,7 @@ const MyPayBills = () => {
           text: "Your file has been deleted.",
           icon: "success",
         });
-        fetch(`http://localhost:3000/bills/${bill?._id}`, {
+        fetch(`https://bill-management-system-server-blond.vercel.app/bills/${bill?._id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

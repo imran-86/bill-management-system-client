@@ -11,7 +11,7 @@ const Home = () => {
         const [loading,setLoading] = useState(true);
     
         useEffect(()=>{
-            fetch('http://localhost:3000/latest-bills')
+            fetch('https://bill-management-system-server-blond.vercel.app/latest-bills')
             .then(res=>res.json())
             .then((data)=>{
                 setLatestBills(data);

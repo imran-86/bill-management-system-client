@@ -11,7 +11,7 @@ const Bills = () => {
     const [loading,setLoading] = useState(true);
     const categories = ['All', 'Electricity', 'Gas', 'Water', 'Internet'];
     useEffect(()=>{
-        fetch('http://localhost:3000/bills')
+        fetch('https://bill-management-system-server-blond.vercel.app/bills')
         .then(res=>res.json())
         .then((data)=>{
             setBills(data);

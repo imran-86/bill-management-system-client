@@ -8,7 +8,7 @@ const CategoryCard = () => {
             <div className="container mx-auto px-4 text-center">
               
                 <Fade direction="down" duration={800} triggerOnce>
-                    <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+                    <h1 className="text-5xl  font-bold text-gray-900 mb-6">
                         Manage Your
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">
                             {" "}Utility Bills
@@ -18,7 +18,7 @@ const CategoryCard = () => {
 
                 {/* Subtitle with Zoom Animation */}
                 <Zoom duration={1000} delay={300} triggerOnce>
-                    <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-lg text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
                         Simple, fast, and secure way to manage all your electricity, gas, water, and internet bills in one place.
                     </p>
                 </Zoom>
