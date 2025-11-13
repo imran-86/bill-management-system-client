@@ -4,6 +4,7 @@ import { AuthContext } from '../Context/AuthContext';
 import { Calendar, DollarSign, Download, Edit, FileText, Mail, MapPin, Phone, Trash2, User } from 'lucide-react';
 import Swal from 'sweetalert2';
 import { jsPDF } from 'jspdf';
+import { toast } from 'react-toastify';
 // import { useNavigate } from 'react-router';
 const MyPayBills = () => {
     const {user} = use(AuthContext)
@@ -114,6 +115,7 @@ const MyPayBills = () => {
         // setSelectedBill(null);
         // e.target.reset()
       console.log(data)
+      
     })
     .catch(err => {
       console.log(err)

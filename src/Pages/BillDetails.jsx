@@ -70,11 +70,15 @@ const BillDetails = () => {
         .then(data =>{
         
            setTimeout(() => {
-            toast.success("Successfully SignUp")
+            
                 setShowConfetti(false);
             }, 5000);
         console.log('After placing payment ',data);
-        toast.success("Successfully SignUp")
+         setTimeout(() => {
+            
+               toast.success("Successfully Payment")
+            }, 4000);
+        
         e.target.reset();
         })
 
@@ -332,12 +336,14 @@ const BillDetails = () => {
           <label className="block text-sm font-medium text-blue-400 mb-1">Amount</label>
           <input name='amount' type="text" className="input text-gray-700" defaultValue={bill.amount} readOnly/>
        <label className="block text-sm font-medium text-blue-400 mb-1">Address</label>
-          <input name='address' type="text" className="input text-gray-700" placeholder="Your Address" />
+          <input required name='address' type="text" className="input text-gray-700" placeholder="Your Address" />
         
        <label className="block text-sm font-medium text-blue-400 mb-1">Phone</label>
-          <input name='phone' type="text" className="input text-gray-700" placeholder="Your Phone Number" />
+          <input required name='phone' type="text" className="input text-gray-700" placeholder="Your Phone Number" />
        <label className="block text-sm font-medium text-blue-400 mb-1">Date</label>
-          <input readOnly name='date' type="text" className="input text-gray-700" defaultValue={new Date().toLocaleDateString()} />
+          <input
+           readOnly 
+           name='date' type="text" className="input text-gray-700" defaultValue={new Date().toLocaleDateString()} />
         
         <button className="btn btn-neutral mt-4">Pay</button>
         </fieldset>
