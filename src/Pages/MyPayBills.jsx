@@ -1,11 +1,13 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { use, useEffect, useRef, useState } from 'react';
 import LoadingSpinner from './LoadingSpinner';
 import { AuthContext } from '../Context/AuthContext';
 import { Calendar, DollarSign, Download, Edit, FileText, Mail, MapPin, Phone, Trash2, User } from 'lucide-react';
 
 const MyPayBills = () => {
     const {user} = use(AuthContext)
+    const updateModalRef = useRef(null)
     const [myBills,setMyBills] = useState([]);
+    const [selectedBill,setSelectedBill] = useState(null)
         const [loading,setLoading] = useState(true);
         console.log(user);
         
@@ -34,10 +36,48 @@ const MyPayBills = () => {
          myBills.forEach(bill => {
           totalAmount += parseInt(bill.amount);
          });
-         console.log(totalAmount);
+        //  console.log(totalAmount);
          
         const totalBills = myBills.length;
-        
+         const handleUpdateModal = (updatedBill)=>{
+            setSelectedBill(updatedBill)
+            updateModalRef.current.showModal();
+    }
+    const handleUpdateSubmit = (e)=>{
+        e.preventDefault();
+         const updatedData = {
+      Phone: e.target.phone.value,
+      Address: e.target.address.value,
+      date: e.target.date.value,
+      amount: e.target.amount.value,
+     
+       }
+    //    console.log(updatedData);
+        fetch(`http://localhost:3000/bills/${selectedBill?._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData)
+    })
+    .then(res => res.json())
+    .then(data=> {
+         setMyBills(prevBills => 
+        prevBills.map(bill => 
+            bill._id === selectedBill._id 
+                ? { ...bill, ...updatedData } 
+                : bill
+        )
+    );
+      console.log(data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+       
+    }
+    // console.log(selectedBill);
+    
     return (
         
          <div className="min-h-screen bg-gray-50 py-8">
@@ -110,7 +150,7 @@ const MyPayBills = () => {
                         Download Report
                     </button>
                 </div>
-
+               
                 {/* Bills Table */}
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
                     {myBills.length === 0 ? (
@@ -197,12 +237,13 @@ const MyPayBills = () => {
                                             <td className="px-6 py-4">
                                                 <div className="flex items-center gap-2">
                                                     <button
-                                                        
+                                                        onClick={()=>handleUpdateModal(bill)}
                                                         className="flex items-center gap-1 bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded-lg text-sm transition-colors duration-200"
                                                     >
                                                         <Edit size={14} />
                                                         Update
                                                     </button>
+                                                    
                                                     <button
                                                        
                                                         className="flex items-center gap-1 bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm transition-colors duration-200"
@@ -217,10 +258,52 @@ const MyPayBills = () => {
                                 </tbody>
                             </table>
                         </div>
+                        
                     )}
                 </div>
 
                 
+            </div>
+            <div>
+                <dialog ref={updateModalRef} className="modal modal-bottom sm:modal-middle">
+              <div className="modal-box">
+                 <h3 className="font-bold text-lg text-black">Payment</h3>
+              <p className="py-4">Press ESC key or click the button below to close</p>
+               <form 
+               onSubmit={handleUpdateSubmit}
+               >
+                 <fieldset className="fieldset">
+          
+          <label className="label text-black">Amount</label>
+          <input name='amount' type="text" className="input text-black" defaultValue={selectedBill?.amount} />
+        <label className="label text-black">Address</label>
+          <input name='address' type="text" className="input text-black" placeholder="Your Address"
+          defaultValue={selectedBill?.Address}
+          />
+        
+        <label className="label text-black">Phone</label>
+          <input name='phone' type="text" className="input text-black" placeholder="Your Phone Number" 
+          defaultValue={selectedBill?.Phone}
+          />
+        <label className="label text-black">Date</label>
+          <input name='date' type="text" className="input text-black" 
+          defaultValue={new Date().toLocaleDateString()}
+           />
+        
+        <button className="btn btn-neutral mt-4">Pay</button>
+        </fieldset>
+
+               </form>
+               
+               
+               <div className="modal-action">
+                <form method="dialog">
+               {/* if there is a button in form, it will close the modal */}
+                   <button className="btn">Close</button>
+                </form>
+               </div>
+                    </div>
+                     </dialog> 
             </div>
         </div>
     );
