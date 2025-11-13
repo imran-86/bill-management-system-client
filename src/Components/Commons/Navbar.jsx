@@ -49,32 +49,23 @@ const Navbar = () => {
         {user ? links2 : links}
     </div>
      
-     {
-        user?<div className="dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          <img
-            alt="Tailwind CSS Navbar component"
-           src={`${user? user.photoURL:" "}`}
-            />
-        </div>
-        
+     {user && (
+  <div className="dropdown dropdown-end">
+    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+      <div className="w-10 rounded-full">
+        <img
+        referrerPolicy='no-referrer'
+        alt="User Avatar" src={user.photoURL} />
       </div>
-      
-      <ul
-        tabIndex="-1"
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        {/* <li>
-          <a className="justify-between">
-            Profile
-            <span className="badge">New</span>
-          </a>
-        </li> */}
-        <li><a>Profiles</a></li>
-        <Link className='hover:border-b-2 hover:border-b-blue-600'><li><a onClick={handleSignOut}>Log out</a></li></Link>
-      </ul>
-    </div> : ""
-     }
+    </div>
+    
+   
+    <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+      <li><a>Profile</a></li>
+      <li><button onClick={handleSignOut}>Logout</button></li>
+    </ul>
+  </div>
+)}
    
   </div>
 </div>
