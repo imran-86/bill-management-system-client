@@ -21,7 +21,7 @@ const Home = () => {
             return <LoadingSpinner></LoadingSpinner>
         }
     return (
-        <div className='my-30'>
+        <div className='space-y-30'>
 
              <Banner></Banner>
              <CategoryCard></CategoryCard>

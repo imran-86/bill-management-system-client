@@ -3,7 +3,7 @@ import LoadingSpinner from './LoadingSpinner';
 import { AuthContext } from '../Context/AuthContext';
 import { Calendar, DollarSign, Download, Edit, FileText, Mail, MapPin, Phone, Trash2, User } from 'lucide-react';
 import Swal from 'sweetalert2';
-
+import { jsPDF } from 'jspdf';
 const MyPayBills = () => {
     const {user} = use(AuthContext)
     const updateModalRef = useRef(null)
@@ -119,6 +119,59 @@ const MyPayBills = () => {
     });
   };
     // console.log(selectedBill);
+const downloadPDFReport = (bills, currentUser) => {
+    // Create new PDF instance
+    const doc = new jsPDF();
+    console.log(currentUser , bills);
+    
+    // Add title
+    doc.setFontSize(20);
+    doc.setTextColor(40, 40, 40);
+    doc.text('Bill Payment Report', 105, 20, { align: 'center' });
+    
+   // Add table headers
+doc.setFontSize(10);
+doc.setTextColor(255, 255, 255);
+doc.setFillColor(59, 130, 246); 
+doc.rect(20, 80, 170, 8, 'F');
+doc.text('Bill ID', 25, 85);
+doc.text('Phone', 50, 85);      
+doc.text('Address', 90, 85);      
+doc.text('Amount', 120, 85);
+doc.text('Date', 145, 85);
+doc.text('Status', 165, 85);
+
+// Add bill data
+doc.setTextColor(0, 0, 0);
+let yPosition = 95;
+
+bills.forEach((bill, index) => {
+    // Alternate row colors
+    if (index % 2 === 0) {
+        doc.setFillColor(245, 245, 245);
+        doc.rect(20, yPosition - 5, 170, 8, 'F');
+    }
+
+    // Fixed: Different X positions for each column
+    doc.text(bill.billsId?.substring(18) || 'N/A', 25, yPosition);
+    doc.text(bill.Phone || 'N/A', 50, yPosition);        // Changed from 90 to 50
+    doc.text(bill.Address?.substring(0, 15) + (bill.Address?.length > 15 ? '...' : '') || 'N/A', 90, yPosition); // Changed from 90 to 75
+    doc.text(`৳${bill.amount}`, 120, yPosition);
+    doc.text(new Date(bill.date).toLocaleDateString(), 145, yPosition);
+    doc.text(bill.status || 'Paid', 165, yPosition);
+    
+    yPosition += 8;
+    
+    // Add new page if needed
+    if (yPosition > 270) {
+        doc.addPage();
+        yPosition = 20;
+    }
+});
+    
+    // Save the PDF
+    doc.save(`bill-report-${currentUser.username}-${new Date().toISOString().split('T')[0]}.pdf`);
+}
     
     return (
         
@@ -184,7 +237,7 @@ const MyPayBills = () => {
                     </div>
                     
                     <button
-                        
+                        onClick={()=>downloadPDFReport(myBills,user)}
                         disabled={myBills.length === 0}
                         className="flex items-center gap-2 bg-green-500 hover:bg-green-600 disabled:bg-gray-400 text-white px-4 py-2 rounded-lg transition-colors duration-200"
                     >
@@ -347,6 +400,7 @@ const MyPayBills = () => {
                     </div>
                      </dialog> 
             </div>
+            
         </div>
     );
     
