@@ -2,6 +2,7 @@ import React, { use, useEffect, useRef, useState } from 'react';
 import LoadingSpinner from './LoadingSpinner';
 import { AuthContext } from '../Context/AuthContext';
 import { Calendar, DollarSign, Download, Edit, FileText, Mail, MapPin, Phone, Trash2, User } from 'lucide-react';
+import Swal from 'sweetalert2';
 
 const MyPayBills = () => {
     const {user} = use(AuthContext)
@@ -76,6 +77,47 @@ const MyPayBills = () => {
     })
        
     }
+     const handleDelete = (bill) => {
+        console.log("Selected");
+        
+        // setSelectedBill(bill);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+        fetch(`http://localhost:3000/bills/${bill?._id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+     
+    })
+    .then(res => res.json())
+    .then(data=> {
+         setMyBills(prevBills => 
+    prevBills.filter(bills => bills._id !== bill._id)
+);
+        // setSelectedBill(null);
+      console.log(data)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+   
+      }
+    });
+  };
     // console.log(selectedBill);
     
     return (
@@ -245,7 +287,7 @@ const MyPayBills = () => {
                                                     </button>
                                                     
                                                     <button
-                                                       
+                                                       onClick={()=>handleDelete(bill)}
                                                         className="flex items-center gap-1 bg-red-500 hover:bg-red-600 text-white px-3 py-2 rounded-lg text-sm transition-colors duration-200"
                                                     >
                                                         <Trash2 size={14} />
