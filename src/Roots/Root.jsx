@@ -7,6 +7,7 @@ import Bills from "../Pages/Bills";
 import Home from "../Pages/Home";
 import PrivateRoute from "../Pages/PrivateRoute/PrivateRoute";
 import BillDetails from "../Pages/BillDetails";
+import AboutUs from "../Pages/AboutUs";
 
 
 
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
           path:"/bill-details/:id",
           element: <PrivateRoute><BillDetails></BillDetails></PrivateRoute>
         },
+        {
+          path:"/about-us",
+          Component: AboutUs
+        }
     ]
   },
 ]);

@@ -1,80 +1,85 @@
 import React from 'react';
-import { Zap, Flame, Droplets, Wifi } from 'lucide-react';
+import { Fade, Zoom, Slide } from 'react-awesome-reveal';
+import { Link } from 'react-router';
 
 const CategoryCard = () => {
-    const categories = [
-        {
-            name: "Electricity",
-            icon: Zap,
-            gradient: "from-yellow-400 via-yellow-500 to-yellow-600",
-            stats: "1.2K bills"
-        },
-        {
-            name: "Gas", 
-            icon: Flame,
-            gradient: "from-orange-400 via-orange-500 to-orange-600",
-            stats: "856 bills"
-        },
-        {
-            name: "Water",
-            icon: Droplets, 
-            gradient: "from-blue-400 via-blue-500 to-blue-600",
-            stats: "942 bills"
-        },
-        {
-            name: "Internet",
-            icon: Wifi,
-            gradient: "from-purple-400 via-purple-500 to-purple-600", 
-            stats: "1.5K bills"
-        }
-    ];
-
     return (
-        <div className="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
-            <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
-                    <h2 className="text-4xl font-bold text-gray-900 mb-4">
-                        Bill Categories
-                    </h2>
-                    <p className="text-gray-600 text-lg">
-                        Choose a category to manage your bills
-                    </p>
-                </div>
+        <section className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-100 flex items-center justify-center py-20">
+            <div className="container mx-auto px-4 text-center">
+              
+                <Fade direction="down" duration={800} triggerOnce>
+                    <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6">
+                        Manage Your
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">
+                            {" "}Utility Bills
+                        </span>
+                    </h1>
+                </Fade>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    {categories.map((category, index) => {
-                        const IconComponent = category.icon;
-                        return (
-                            <div
+                {/* Subtitle with Zoom Animation */}
+                <Zoom duration={1000} delay={300} triggerOnce>
+                    <p className="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                        Simple, fast, and secure way to manage all your electricity, gas, water, and internet bills in one place.
+                    </p>
+                </Zoom>
+
+                {/* Features Grid with Slide Animation */}
+                <Slide direction="up" duration={800} delay={500} triggerOnce>
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+                        {[
+                            { icon: '⚡', title: 'Electricity', desc: 'Power bills' },
+                            { icon: '🔥', title: 'Gas', desc: 'Gas bills' },
+                            { icon: '💧', title: 'Water', desc: 'Water bills' },
+                            { icon: '🌐', title: 'Internet', desc: 'Internet bills' }
+                        ].map((feature, index) => (
+                            <div 
                                 key={index}
-                                className="group relative overflow-hidden rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 cursor-pointer"
+                                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
                             >
-                                <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`}></div>
-                                
-                                <div className="relative p-8">
-                                    <div className={`w-20 h-20 bg-gradient-to-br ${category.gradient} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                                        <IconComponent size={32} className="text-white" />
-                                    </div>
-                                    
-                                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                                        {category.name}
-                                    </h3>
-                                    
-                                    <p className="text-gray-600 mb-4">
-                                        {category.stats}
-                                    </p>
-                                    
-                                    <div className="flex items-center text-gray-500 group-hover:text-gray-700 transition-colors duration-200">
-                                        <span className="font-medium">Explore</span>
-                                        <div className="w-0 group-hover:w-4 h-0.5 bg-current ml-2 transition-all duration-300"></div>
-                                    </div>
-                                </div>
+                                <div className="text-4xl mb-4">{feature.icon}</div>
+                                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                                    {feature.title}
+                                </h3>
+                                <p className="text-gray-600">{feature.desc}</p>
                             </div>
-                        );
-                    })}
-                </div>
+                        ))}
+                    </div>
+                </Slide>
+
+                {/* CTA Buttons with Fade Animation */}
+                <Fade direction="up" duration={800} delay={700} triggerOnce>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            Get Started Free
+                        </button>
+                        
+                        <Link
+                        to="/about-us"
+                        className="border-2 border-gray-300 hover:border-blue-600 text-gray-700 hover:text-blue-600 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300">
+                            About Us
+                        </Link>
+                    </div>
+                </Fade>
+
+                {/* Stats with Fade Animation */}
+                <Fade direction="up" duration={800} delay={900} triggerOnce>
+                    <div className="flex flex-wrap justify-center gap-8 mt-16 text-gray-600">
+                        <div className="text-center">
+                            <div className="text-3xl font-bold text-blue-600">10K+</div>
+                            <div className="text-sm">Happy Users</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-3xl font-bold text-green-600">50K+</div>
+                            <div className="text-sm">Bills Paid</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-3xl font-bold text-purple-600">24/7</div>
+                            <div className="text-sm">Support</div>
+                        </div>
+                    </div>
+                </Fade>
             </div>
-        </div>
+        </section>
     );
 };
 

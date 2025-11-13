@@ -3,9 +3,12 @@ import { ArrowLeft, Calendar, MapPin, DollarSign, FileText, Clock, User } from '
 import {  useNavigate, useParams } from 'react-router';
 import LoadingSpinner from './LoadingSpinner';
 import { AuthContext } from '../Context/AuthContext';
-
+import Confetti from 'react-confetti';
+import { toast } from "react-toastify";
 const BillDetails = () => {
     const {user} = use(AuthContext);
+    const [showConfetti, setShowConfetti] = useState(false);
+    const [confettiSize, setConfettiSize] = useState({ width: 0, height: 0 });
     const paymentModalRef = useRef(null)
     const { id } = useParams();
     
@@ -28,10 +31,12 @@ const BillDetails = () => {
         
     };
     const handlePaymentModal = ()=>{
+        
         paymentModalRef.current.showModal();
     }
     const handlePaymentSubmit = (e)=>{
         e.preventDefault();
+        
         const name = e.target.name.value;
         const email = e.target.email.value;
         const phone = e.target.phone.value;
@@ -49,7 +54,11 @@ const BillDetails = () => {
            amount : amount,
            date : date
         }
-
+       setConfettiSize({
+            width: window.innerWidth,
+            height: window.innerHeight
+        });
+        setShowConfetti(true);
         fetch('http://localhost:3000/payments-history',{
            method: 'POST',
            headers: {
@@ -59,8 +68,13 @@ const BillDetails = () => {
         })
         .then(res =>res.json())
         .then(data =>{
-        console.log('After placing payment ',data);
         
+           setTimeout(() => {
+                setShowConfetti(false);
+            }, 5000);
+        console.log('After placing payment ',data);
+        toast.success("Successfully SignUp")
+        e.target.reset();
         })
 
 
@@ -290,6 +304,16 @@ const BillDetails = () => {
               <div className="modal-box">
                  <h3 className="font-bold text-lg text-black">Payment</h3>
               <p className="py-4">Press ESC key or click the button below to close</p>
+               
+                 {showConfetti && (
+                <Confetti
+                    width={confettiSize.width}
+                    height={confettiSize.height}
+                    numberOfPieces={1500}
+                    recycle={false}
+                    onConfettiComplete={() => setShowConfetti(false)}
+                />
+            )}
                <form 
                onSubmit={handlePaymentSubmit}
                >
@@ -322,8 +346,8 @@ const BillDetails = () => {
                
                <div className="modal-action">
                 <form method="dialog">
-               {/* if there is a button in form, it will close the modal */}
-                   <button className="btn">Close</button>
+              
+                   <button className="btn">Please Close</button>
                 </form>
                </div>
                     </div>
