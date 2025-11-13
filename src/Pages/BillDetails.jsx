@@ -70,6 +70,7 @@ const BillDetails = () => {
         .then(data =>{
         
            setTimeout(() => {
+            toast.success("Successfully SignUp")
                 setShowConfetti(false);
             }, 5000);
         console.log('After placing payment ',data);
@@ -322,7 +323,7 @@ const BillDetails = () => {
           <input name='email' type="email" className="input text-gray-700" readOnly defaultValue={user?.email} />
            <label className="block text-sm font-medium text-blue-400 mb-1">Username</label>
           <input name='name' type="text" className="input text-gray-700" defaultValue={user?.displayName}
-          readOnly
+        
           />
            <label className="block text-sm font-medium text-blue-400 mb-1">BillId</label>
           <input name='billId' type="text" className="input text-gray-700" defaultValue={id}
@@ -336,7 +337,7 @@ const BillDetails = () => {
        <label className="block text-sm font-medium text-blue-400 mb-1">Phone</label>
           <input name='phone' type="text" className="input text-gray-700" placeholder="Your Phone Number" />
        <label className="block text-sm font-medium text-blue-400 mb-1">Date</label>
-          <input name='date' type="text" className="input text-gray-700" defaultValue={new Date().toLocaleDateString()} />
+          <input readOnly name='date' type="text" className="input text-gray-700" defaultValue={new Date().toLocaleDateString()} />
         
         <button className="btn btn-neutral mt-4">Pay</button>
         </fieldset>
