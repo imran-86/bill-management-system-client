@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import BillsCard from './BillsCard';
 import LoadingSpinner from './LoadingSpinner';
 import { Link } from 'react-router';
+import Banner from './Banner';
+import CategoryCard from './CategoryCard';
 
 const Home = () => {
     const [latestBills,setLatestBills] = useState([]);
@@ -20,7 +22,11 @@ const Home = () => {
         }
     return (
         <div className='my-30'>
-            <h2 className='text-5xl font-bold text-center mb-20'>Recent Bills</h2>
+
+             <Banner></Banner>
+             <CategoryCard></CategoryCard>
+
+            <h2 className='text-5xl font-bold text-center my-20'>Recent Bills</h2>
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
          {latestBills.map(bill => <BillsCard key={bill._id} bill={bill}/>)}
           </div>
