@@ -64,7 +64,7 @@ const Bills = () => {
       
           
 
-            <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 p-4">
         {filteredBills.map(bill => <BillsCard key={bill._id} bill={bill}/>)}
       </div>
         </div>

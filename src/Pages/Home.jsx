@@ -4,6 +4,7 @@ import LoadingSpinner from './LoadingSpinner';
 import { Link } from 'react-router';
 import Banner from './Banner';
 import CategoryCard from './CategoryCard';
+import ExtraSection from './ExtraSection';
 
 const Home = () => {
     const [latestBills,setLatestBills] = useState([]);
@@ -27,7 +28,7 @@ const Home = () => {
              <CategoryCard></CategoryCard>
 
             <h2 className='text-5xl font-semibold text-center my-20'>Recent Bills</h2>
-            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 p-4">
          {latestBills.map(bill => <BillsCard key={bill._id} bill={bill}/>)}
           </div>
            <Link
@@ -38,6 +39,8 @@ const Home = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
                 </Link>
+
+                <ExtraSection></ExtraSection>
         </div>
     );
 };

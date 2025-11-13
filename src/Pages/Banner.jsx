@@ -28,7 +28,7 @@ const Banner = () => {
     ];
 
     return (
-        <div className="mx-auto w-7xl h-96 md:h-[500px] relative mt-20">
+        <div className="mx-auto max-w-7xl h-96 md:h-[500px] relative mt-20">
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}

@@ -228,7 +228,7 @@ const BillDetails = () => {
                                 <div className="bg-gray-50 rounded-xl p-6">
                                     <h3 className="text-lg font-semibold text-gray-800 mb-4">Bill Information</h3>
                                     <div className="space-y-4">
-                                        <div className="flex items-center justify-between py-2 border-b border-gray-200">
+                                        <div className="flex flex-col md:flex-row items-center justify-between py-2 border-b border-gray-200">
                                             <span className="text-gray-600">Reported By</span>
                                             <span className="font-medium text-gray-800">{bill.email}</span>
                                         </div>
