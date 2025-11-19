@@ -2,15 +2,76 @@ Live Site: https://silver-taffy-dd46e1.netlify.app/
 
 
 
+📋 Project Overview
+BillManager is a comprehensive web application that simplifies utility bill management for users. It provides a secure and user-friendly platform to track, manage, and pay electricity, gas, water, and internet bills efficiently.
+
+🛠️ Technology Stack
+Frontend:
+React.js - User Interface
+
+Tailwind CSS - Styling & Design
+
+React Router - Navigation
+
+Lucide React - Icons
+
+Swiper.js - Carousel/Slider
+
+React Awesome Reveal - Animations
+
+jsPDF - PDF Report Generation
+
+Backend:
+Node.js - Runtime Environment
+
+Express.js - Web Framework
+
+MongoDB - Database
+
+MongoDB Atlas - Cloud Database
+
+CORS - Cross-Origin Resource Sharing
+
+
+
 🚀 Key Features
-All-in-One Bill Management - Track electricity, gas, water, and internet bills in single platform
+📊 All-in-One Bill Management - Track electricity, gas, water, and internet bills in a single platform
 
-Secure Online Payments - Bank-level security for all transactions with real-time processing
+💳 Secure Online Payments - Bank-level security with real-time payment processing
 
-Smart Notifications - Get timely reminders for upcoming due dates and payment confirmations
+🔔 Smart Dashboard - User-friendly interface with category-wise organization
 
-Downloadable Reports - Generate and export PDF reports of your payment history
+📄 Downloadable Reports - Generate and export PDF reports of payment history
 
-User-Friendly Dashboard - Intuitive interface with category-wise bill organization and analytics
+👤 User Authentication - Secure login with personalized bill management
 
-Simplify your utility bill management with BillManager - Fast, secure, and reliable.
+📱 Responsive Design - Works perfectly on all devices
+
+🎯 Current Month Validation - Only allow payments for current month bills
+
+
+
+📦 Project Dependencies
+Frontend Dependencies:
+json
+{
+  "react": "^18.2.0",
+  "react-dom": "^18.2.0",
+  "react-router-dom": "^6.8.0",
+  "tailwindcss": "^3.3.0",
+  "lucide-react": "^0.263.1",
+  "swiper": "^10.0.4",
+  "react-awesome-reveal": "^4.2.4",
+  "jspdf": "^2.5.1"
+}
+
+
+
+Backend Dependencies:
+json
+{
+  "express": "^4.18.2",
+  "mongodb": "^5.7.0",
+  "cors": "^2.8.5",
+  "dotenv": "^16.1.4"
+}
