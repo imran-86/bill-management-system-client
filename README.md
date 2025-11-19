@@ -51,27 +51,27 @@ CORS - Cross-Origin Resource Sharing
 
 
 
-📦 Project Dependencies
-Frontend Dependencies:
-json
-{
-  "react": "^18.2.0",
-  "react-dom": "^18.2.0",
-  "react-router-dom": "^6.8.0",
-  "tailwindcss": "^3.3.0",
-  "lucide-react": "^0.263.1",
-  "swiper": "^10.0.4",
-  "react-awesome-reveal": "^4.2.4",
-  "jspdf": "^2.5.1"
-}
+📦 Project Dependencies  
+Frontend Dependencies:  
+json  
+{  
+  "react": "^18.2.0",  
+  "react-dom": "^18.2.0",  
+  "react-router-dom": "^6.8.0",  
+  "tailwindcss": "^3.3.0",  
+  "lucide-react": "^0.263.1",  
+  "swiper": "^10.0.4",  
+  "react-awesome-reveal": "^4.2.4",  
+  "jspdf": "^2.5.1"  
+}  
 
 
 
-Backend Dependencies:
-json
-{
-  "express": "^4.18.2",
-  "mongodb": "^5.7.0",
-  "cors": "^2.8.5",
-  "dotenv": "^16.1.4"
-}
+Backend Dependencies:  
+json  
+{  
+  "express": "^4.18.2",  
+  "mongodb": "^5.7.0",  
+  "cors": "^2.8.5",  
+  "dotenv": "^16.1.4"  
+}  
