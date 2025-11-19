@@ -1,4 +1,9 @@
-Live Site: https://silver-taffy-dd46e1.netlify.app/
+Live Site: https://incandescent-dasik-fc131f.netlify.app/
+
+<img width="1900" height="863" alt="Screenshot 2025-11-19 150124" src="https://github.com/user-attachments/assets/7b17cdf5-b4fd-4e35-a550-c834fed17f2f" />
+<img width="1906" height="704" alt="Screenshot 2025-11-19 150207" src="https://github.com/user-attachments/assets/919fbc28-2d53-41b8-a4c6-07957c44a511" />
+<img width="1894" height="863" alt="Screenshot 2025-11-19 150249" src="https://github.com/user-attachments/assets/ecba2d3d-fe58-4f63-9277-826be4098dff" />
+
 
 
 
