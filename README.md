@@ -75,3 +75,34 @@ json
   "cors": "^2.8.5",  
   "dotenv": "^16.1.4"  
 }  
+
+
+🏃‍♂️ Local Development Setup
+Prerequisites:
+Node.js (v16 or higher)
+
+MongoDB (Local or Atlas)
+
+Git
+
+Installation & Running:  
+Clone the repository  
+
+bash
+git clone https://github.com/your-username/billmanager.git  
+cd billmanager  
+
+
+
+Frontend Setup
+
+bash
+# Navigate to client directory  
+cd client  
+
+# Install dependencies  
+npm install  
+
+# Start development server  
+npm run dev  
+Frontend will run on: http://localhost:5173  
